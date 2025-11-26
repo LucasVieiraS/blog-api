@@ -1,6 +1,6 @@
 ﻿package com.github.lucasvieiras.springboot_template.dto.factories;
 
-import com.github.lucasvieiras.springboot_template.dto.requests.ArticleDTO;
+import com.github.lucasvieiras.springboot_template.dto.ArticleDTO;
 import com.github.lucasvieiras.springboot_template.entities.Article;
 import org.springframework.stereotype.Component;
 

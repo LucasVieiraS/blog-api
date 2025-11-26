@@ -1,7 +1,7 @@
 ﻿package com.github.lucasvieiras.springboot_template.controllers;
 
 import com.github.lucasvieiras.springboot_template.dto.factories.CategoryDTOFactory;
-import com.github.lucasvieiras.springboot_template.dto.requests.CategoryDTO;
+import com.github.lucasvieiras.springboot_template.dto.CategoryDTO;
 import com.github.lucasvieiras.springboot_template.dto.requests.category.CategoryRequest;
 import com.github.lucasvieiras.springboot_template.entities.Category;
 import com.github.lucasvieiras.springboot_template.services.CategoryService;

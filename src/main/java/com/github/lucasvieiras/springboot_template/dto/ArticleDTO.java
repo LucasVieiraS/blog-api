@@ -1,4 +1,4 @@
-﻿package com.github.lucasvieiras.springboot_template.dto.requests;
+﻿package com.github.lucasvieiras.springboot_template.dto;
 
 import com.github.lucasvieiras.springboot_template.entities.Category;
 import com.github.lucasvieiras.springboot_template.entities.Tag;

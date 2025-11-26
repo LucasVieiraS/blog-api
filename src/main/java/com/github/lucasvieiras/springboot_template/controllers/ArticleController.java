@@ -1,7 +1,7 @@
 ﻿package com.github.lucasvieiras.springboot_template.controllers;
 
 import com.github.lucasvieiras.springboot_template.dto.factories.ArticleDTOFactory;
-import com.github.lucasvieiras.springboot_template.dto.requests.ArticleDTO;
+import com.github.lucasvieiras.springboot_template.dto.ArticleDTO;
 import com.github.lucasvieiras.springboot_template.dto.requests.article.ArticleRequest;
 import com.github.lucasvieiras.springboot_template.dto.requests.article.CreateArticleRequest;
 import com.github.lucasvieiras.springboot_template.entities.Article;
