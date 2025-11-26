@@ -1,4 +1,4 @@
-# Personal Blog API
+# Lucas Vieira's Blog API
 
 An API that features articles using markdown, tags and categories.
 

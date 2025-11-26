@@ -1,7 +1,7 @@
 # Read Me First
 The following was discovered as part of building this project:
 
-* The original package name 'com.github.lucasvieiras.springboot-template' is invalid and this project uses 'com.github.lucasvieiras.springboot_template' instead.
+* The original package name 'com.github.lucasvieiras.springboot-template' is invalid and this project uses 'com.github.lucasvieiras.blog_api' instead.
 
 # Getting Started
 

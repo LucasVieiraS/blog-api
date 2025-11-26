@@ -4,7 +4,7 @@
       path: /api/v1
   
   datasource:
-    url: jdbc:postgresql://localhost:5432/springboot-template
+    url: jdbc:postgresql://localhost:5432/lucasvieira-blog-api
     username: postgres
     password: 
     hikari:
