@@ -1,12 +1,23 @@
-﻿spring:
+spring:
   mvc:
     servlet:
       path: /api/v1
-  
+  sql:
+    init:
+      mode: always
+  jpa:
+    defer-datasource-initialization: true
+    database: mysql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate.format_sql: true
   datasource:
-    url: jdbc:postgresql://localhost:5432/lucasvieira-blog-api
-    username: postgres
-    password: 
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/blog}
+    username: ${SPRING_DATASOURCE_USERNAME:postgres}
+    password: ${SPRING_DATASOURCE_PASSWORD:postgres}
     hikari:
       minimum-idle: 5
       maximum-pool-size: 20
