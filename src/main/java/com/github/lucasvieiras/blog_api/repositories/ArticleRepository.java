@@ -1,4 +1,4 @@
-﻿package com.github.lucasvieiras.blog_api.repositories;
+package com.github.lucasvieiras.blog_api.repositories;
 
 import com.github.lucasvieiras.blog_api.entities.Article;
 import org.springframework.data.jpa.repository.JpaRepository;

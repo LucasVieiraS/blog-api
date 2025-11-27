@@ -1,4 +1,4 @@
-﻿package com.github.lucasvieiras.blog_api.dto;
+package com.github.lucasvieiras.blog_api.dto;
 
 import com.github.lucasvieiras.blog_api.entities.Category;
 import com.github.lucasvieiras.blog_api.entities.Tag;

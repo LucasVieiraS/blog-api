@@ -1,4 +1,4 @@
-﻿package com.github.lucasvieiras.blog_api.dto.factories;
+package com.github.lucasvieiras.blog_api.dto.factories;
 
 import com.github.lucasvieiras.blog_api.dto.ArticleDTO;
 import com.github.lucasvieiras.blog_api.entities.Article;

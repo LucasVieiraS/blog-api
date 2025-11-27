@@ -1,4 +1,4 @@
-﻿package com.github.lucasvieiras.blog_api.services;
+package com.github.lucasvieiras.blog_api.services;
 
 import com.github.lucasvieiras.blog_api.dto.requests.tag.TagRequest;
 import com.github.lucasvieiras.blog_api.entities.Tag;

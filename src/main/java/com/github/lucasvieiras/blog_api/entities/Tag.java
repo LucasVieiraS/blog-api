@@ -1,4 +1,4 @@
-﻿package com.github.lucasvieiras.blog_api.entities;
+package com.github.lucasvieiras.blog_api.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
