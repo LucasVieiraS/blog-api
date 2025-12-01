@@ -24,33 +24,33 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/tag")
+@RequestMapping("/tags")
 @AllArgsConstructor
 public class TagController {
     private final TagService tagService;
     private final TagDTOFactory tagDTOFactory;
 
-    @PostMapping("/create")
+    @PostMapping()
     public ResponseEntity<TagDTO> createTag(@RequestBody TagRequest request) {
         Tag tag = tagService.createTag(request);
         TagDTO response = tagDTOFactory.create(tag);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
-    @PatchMapping("/update/{id}")
+    @PatchMapping("/{id}")
     public ResponseEntity<TagDTO> updateTag(@RequestBody TagRequest request, @PathVariable UUID id) {
         Tag tag = tagService.updateTag(request, id);
         TagDTO response = tagDTOFactory.create(tag);
-        return new ResponseEntity<>(response, HttpStatus.CREATED);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteTag(@PathVariable UUID id) {
         tagService.deleteTag(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping("/all")
+    @GetMapping()
     public ResponseEntity<Page<TagDTO>> findAllTags(Pageable pageable) {
         Page<Tag> tagsPage = tagService.findAllCategories(pageable);
 
@@ -60,14 +60,14 @@ public class TagController {
         return new ResponseEntity<>(tagDTOPage, HttpStatus.OK);
     }
 
-    @GetMapping("/id/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<TagDTO> findTagById(@PathVariable UUID id) {
         Tag tag = tagService.findById(id);
         TagDTO response = tagDTOFactory.create(tag);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @GetMapping("/title/{title}")
+    @GetMapping("/by-title/{title}")
     public ResponseEntity<TagDTO> findTagByTitle(@PathVariable String title) {
         Tag tag = tagService.findTagByTitle(title);
         TagDTO response = tagDTOFactory.create(tag);

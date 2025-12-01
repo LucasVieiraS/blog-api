@@ -18,13 +18,13 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/article")
+@RequestMapping("/articles")
 @AllArgsConstructor
 public class ArticleController {
     private final ArticleService articleService;
     private final ArticleDTOFactory articleDTOFactory;
 
-    @PostMapping("/create")
+    @PostMapping()
     public ResponseEntity<ArticleDTO> createArticle(@RequestBody CreateArticleRequest request) {
         Article article = articleService.createArticle(request);
         ArticleDTO response = articleDTOFactory.create(article);
@@ -32,22 +32,22 @@ public class ArticleController {
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
-    @PatchMapping("/update/{id}")
+    @PatchMapping("/{id}")
     public ResponseEntity<ArticleDTO> updateArticle(@RequestBody ArticleRequest articleRequest, @PathVariable UUID id) {
         Article article =  articleService.updateArticle(articleRequest, id);
         ArticleDTO response = articleDTOFactory.create(article);
 
-        return new ResponseEntity<>(response, HttpStatus.CREATED);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteArticle(@PathVariable UUID id) {
         articleService.deleteArticle(id);
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping("/all")
+    @GetMapping()
     public ResponseEntity<Page<ArticleDTO>> findAllArticles(Pageable pageable) {
         Page<Article> articlesPages = articleService.findAllArticles(pageable);
 
@@ -57,7 +57,7 @@ public class ArticleController {
         return new ResponseEntity<>(articlesDTOPage, HttpStatus.OK);
     }
 
-    @GetMapping("/id/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<ArticleDTO> findArticleById(@PathVariable UUID id) {
         Article article = articleService.findById(id);
         ArticleDTO response = articleDTOFactory.create(article);
@@ -65,7 +65,7 @@ public class ArticleController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @GetMapping("/title/{title}")
+    @GetMapping("/by-title/{title}")
     public ResponseEntity<ArticleDTO> findArticleByTitle(@PathVariable String title) {
         Article article = articleService.findByTitle(title);
         ArticleDTO response = articleDTOFactory.create(article);

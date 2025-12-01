@@ -24,13 +24,13 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/category")
+@RequestMapping("/categories")
 @AllArgsConstructor
 public class CategoryController {
     private final CategoryService categoryService;
     private final CategoryDTOFactory categoryDTOFactory;
 
-    @PostMapping("/create")
+    @PostMapping()
     public ResponseEntity<CategoryDTO> createCategory(@RequestBody CategoryRequest request) {
         Category category = categoryService.createCategory(request);
         CategoryDTO response = categoryDTOFactory.create(category);
@@ -38,22 +38,22 @@ public class CategoryController {
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
-    @PatchMapping("/update/{id}")
+    @PatchMapping("/{id}")
     public ResponseEntity<CategoryDTO> updateCategory(@RequestBody CategoryRequest request, @PathVariable UUID id) {
         Category category = categoryService.updateCategory(request, id);
         CategoryDTO response = categoryDTOFactory.create(category);
 
-        return new ResponseEntity<>(response, HttpStatus.CREATED);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteCategory(@PathVariable UUID id) {
         categoryService.deleteCategory(id);
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping("/all")
+    @GetMapping()
     public ResponseEntity<Page<CategoryDTO>> findAllCategories(Pageable pageable) {
         Page<Category> categoriesPage = categoryService.findAllCategories(pageable);
 
@@ -63,7 +63,7 @@ public class CategoryController {
         return new ResponseEntity<>(categoriesDTOPage, HttpStatus.OK);
     }
 
-    @GetMapping("/id/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<CategoryDTO> findCategoryById(@PathVariable UUID id) {
         Category category = categoryService.findCategoryById(id);
         CategoryDTO response = categoryDTOFactory.create(category);
@@ -71,7 +71,7 @@ public class CategoryController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @GetMapping("/title/{title}")
+    @GetMapping("/by-title/{title}")
     public ResponseEntity<CategoryDTO> findCategoryByTitle(@PathVariable String title) {
         Category category = categoryService.findCategoryByTitle(title);
         CategoryDTO response = categoryDTOFactory.create(category);
