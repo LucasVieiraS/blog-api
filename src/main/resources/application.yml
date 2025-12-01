@@ -2,12 +2,8 @@ spring:
   mvc:
     servlet:
       path: /api/v1
-  sql:
-    init:
-      mode: always
   jpa:
-    defer-datasource-initialization: true
-    database: mysql
+    database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     show-sql: false
     hibernate:

@@ -10,5 +10,5 @@ CREATE TABLE articles_categories (
     PRIMARY KEY (article_id, category_id)
 );
 
-CREATE INDEX idx_article_tags_tag_id ON article_tags(tag_id);
-CREATE INDEX idx_article_categories_category_id ON article_categories(category_id);
+CREATE INDEX idx_articles_tags_tag_id ON articles_tags(tag_id);
+CREATE INDEX idx_articles_categories_category_id ON articles_categories(category_id);
