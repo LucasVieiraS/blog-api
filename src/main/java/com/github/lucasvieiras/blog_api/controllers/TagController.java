@@ -5,6 +5,7 @@ import com.github.lucasvieiras.blog_api.dto.TagDTO;
 import com.github.lucasvieiras.blog_api.dto.requests.tag.TagRequest;
 import com.github.lucasvieiras.blog_api.entities.Tag;
 import com.github.lucasvieiras.blog_api.services.TagService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -31,14 +32,14 @@ public class TagController {
     private final TagDTOFactory tagDTOFactory;
 
     @PostMapping()
-    public ResponseEntity<TagDTO> createTag(@RequestBody TagRequest request) {
+    public ResponseEntity<TagDTO> createTag(@Valid @RequestBody TagRequest request) {
         Tag tag = tagService.createTag(request);
         TagDTO response = tagDTOFactory.create(tag);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<TagDTO> updateTag(@RequestBody TagRequest request, @PathVariable UUID id) {
+    public ResponseEntity<TagDTO> updateTag(@Valid @RequestBody TagRequest request, @PathVariable UUID id) {
         Tag tag = tagService.updateTag(request, id);
         TagDTO response = tagDTOFactory.create(tag);
         return new ResponseEntity<>(response, HttpStatus.OK);

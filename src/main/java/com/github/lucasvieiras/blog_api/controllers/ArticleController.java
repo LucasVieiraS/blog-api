@@ -6,6 +6,7 @@ import com.github.lucasvieiras.blog_api.dto.requests.article.ArticleRequest;
 import com.github.lucasvieiras.blog_api.dto.requests.article.CreateArticleRequest;
 import com.github.lucasvieiras.blog_api.entities.Article;
 import com.github.lucasvieiras.blog_api.services.ArticleService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -25,7 +26,7 @@ public class ArticleController {
     private final ArticleDTOFactory articleDTOFactory;
 
     @PostMapping()
-    public ResponseEntity<ArticleDTO> createArticle(@RequestBody CreateArticleRequest request) {
+    public ResponseEntity<ArticleDTO> createArticle(@Valid @RequestBody CreateArticleRequest request) {
         Article article = articleService.createArticle(request);
         ArticleDTO response = articleDTOFactory.create(article);
 
@@ -33,7 +34,7 @@ public class ArticleController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<ArticleDTO> updateArticle(@RequestBody ArticleRequest articleRequest, @PathVariable UUID id) {
+    public ResponseEntity<ArticleDTO> updateArticle(@Valid @RequestBody ArticleRequest articleRequest, @PathVariable UUID id) {
         Article article =  articleService.updateArticle(articleRequest, id);
         ArticleDTO response = articleDTOFactory.create(article);
 

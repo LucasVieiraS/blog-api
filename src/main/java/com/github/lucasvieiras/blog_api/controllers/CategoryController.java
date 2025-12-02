@@ -5,6 +5,7 @@ import com.github.lucasvieiras.blog_api.dto.CategoryDTO;
 import com.github.lucasvieiras.blog_api.dto.requests.category.CategoryRequest;
 import com.github.lucasvieiras.blog_api.entities.Category;
 import com.github.lucasvieiras.blog_api.services.CategoryService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -31,7 +32,7 @@ public class CategoryController {
     private final CategoryDTOFactory categoryDTOFactory;
 
     @PostMapping()
-    public ResponseEntity<CategoryDTO> createCategory(@RequestBody CategoryRequest request) {
+    public ResponseEntity<CategoryDTO> createCategory(@Valid @RequestBody CategoryRequest request) {
         Category category = categoryService.createCategory(request);
         CategoryDTO response = categoryDTOFactory.create(category);
 
@@ -39,7 +40,7 @@ public class CategoryController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<CategoryDTO> updateCategory(@RequestBody CategoryRequest request, @PathVariable UUID id) {
+    public ResponseEntity<CategoryDTO> updateCategory(@Valid @RequestBody CategoryRequest request, @PathVariable UUID id) {
         Category category = categoryService.updateCategory(request, id);
         CategoryDTO response = categoryDTOFactory.create(category);
 
