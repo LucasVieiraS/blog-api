@@ -3,6 +3,8 @@ package com.lucasvieiras.blog_api.services;
 import com.lucasvieiras.blog_api.dto.requests.article.ArticleRequest;
 import com.lucasvieiras.blog_api.dto.requests.article.CreateArticleRequest;
 import com.lucasvieiras.blog_api.entities.Article;
+import com.lucasvieiras.blog_api.exceptions.ConflictException;
+import com.lucasvieiras.blog_api.exceptions.ResourceNotFoundException;
 import com.lucasvieiras.blog_api.repositories.ArticleRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -20,6 +22,10 @@ public class ArticleService {
     private final ArticleRepository articleRepository;
 
     public Article createArticle(CreateArticleRequest request) {
+        if (articleRepository.findByTitle(request.title()).isPresent()) {
+            throw new ConflictException("Article already exists");
+        }
+
         Article article = Article.builder()
                 .title(request.title())
                 .subtitle(request.subtitle())
@@ -30,7 +36,7 @@ public class ArticleService {
     }
 
     public Article updateArticle(ArticleRequest request, UUID id) {
-        Article article = articleRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+            Article article = articleRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Article not found with id: " + id));
 
         if (request.title() != null) article.setTitle(request.title());
 
@@ -42,15 +48,15 @@ public class ArticleService {
     }
 
     public Article findById(UUID id) {
-        return articleRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        return articleRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Article not found with id: " + id));
     }
 
     public Article findByTitle(String title) {
-        return articleRepository.findByTitle(title).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        return articleRepository.findByTitle(title).orElseThrow(() -> new ResourceNotFoundException("Article not found with title: " + title));
     }
 
     public void deleteArticle(UUID id) {
-        Article article = articleRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        Article article = articleRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Article not found with id: " + id));
 
         articleRepository.delete(article);
     }
