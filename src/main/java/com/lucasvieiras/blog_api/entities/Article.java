@@ -46,6 +46,10 @@ public class Article {
     @Builder.Default
     private Set<Category> categories = new HashSet<>();
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "author_id", nullable = false)
+    private User author;
+
     @Column(nullable = false, columnDefinition = "TEXT")
     private String contentMarkdown;
 

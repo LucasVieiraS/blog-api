@@ -17,3 +17,8 @@ spring:
     hikari:
       minimum-idle: 5
       maximum-pool-size: 20
+jwt:
+  secret: ${JWT_SECRET:this-is-a-development-secret-key-change-in-production}
+  expiration: ${JWT_TOKEN_EXPIRATION:86400000}
+cors:
+  allowed-origins: ${ALLOWED_ORIGINS:*}
