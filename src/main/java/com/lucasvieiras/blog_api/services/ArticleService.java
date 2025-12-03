@@ -6,7 +6,7 @@ import com.lucasvieiras.blog_api.entities.Article;
 import com.lucasvieiras.blog_api.exceptions.ConflictException;
 import com.lucasvieiras.blog_api.exceptions.ResourceNotFoundException;
 import com.lucasvieiras.blog_api.repositories.ArticleRepository;
-import jakarta.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;

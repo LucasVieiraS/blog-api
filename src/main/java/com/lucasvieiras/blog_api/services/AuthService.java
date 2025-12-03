@@ -8,7 +8,7 @@ import com.lucasvieiras.blog_api.enums.Role;
 import com.lucasvieiras.blog_api.exceptions.ConflictException;
 import com.lucasvieiras.blog_api.repositories.UserRepository;
 import com.lucasvieiras.blog_api.security.JwtTokenProvider;
-import jakarta.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
