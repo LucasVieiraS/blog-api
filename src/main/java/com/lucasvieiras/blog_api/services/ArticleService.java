@@ -53,18 +53,22 @@ public class ArticleService {
         articleRepository.delete(article);
     }
 
+    @Transactional(readOnly = true)
     public Page<Article> findAllArticles(Pageable pageable) {
         return articleRepository.findAll(pageable);
     }
 
+    @Transactional(readOnly = true)
     public Article findById(UUID id) {
         return articleRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Article not found with id: " + id));
     }
 
+    @Transactional(readOnly = true)
     public Article findByTitle(String title) {
         return articleRepository.findByTitle(title).orElseThrow(() -> new ResourceNotFoundException("Article not found with title: " + title));
     }
 
+    @Transactional(readOnly = true)
     public Page<Article> findByTagValues(Collection<String> values, boolean matchAll, Pageable pageable) {
         if (values == null || values.isEmpty()) {
             return Page.empty(pageable);
@@ -77,6 +81,7 @@ public class ArticleService {
         return articleRepository.findByAnyTagValues(values, pageable);
     }
 
+    @Transactional(readOnly = true)
     public Page<Article> findByCategoryValues(Collection<String> values, boolean matchAll, Pageable pageable) {
         if (values == null || values.isEmpty()) {
             return Page.empty(pageable);

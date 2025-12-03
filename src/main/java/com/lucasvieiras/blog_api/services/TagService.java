@@ -21,6 +21,7 @@ import java.util.UUID;
 public class TagService {
     private final TagRepository tagRepository;
 
+    @Transactional
     public Tag createTag(TagRequest request) {
         if (tagRepository.findByValue(request.value()).isPresent()) {
             throw new ConflictException("Tag already exists");
@@ -33,24 +34,13 @@ public class TagService {
         return tagRepository.save(tag);
     }
 
-    public Tag findById(UUID id) {
-        return tagRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Tag not found with id: " + id));
-    }
-
+    @Transactional
     public Tag updateTag(TagRequest request, UUID id) {
         Tag Tag = tagRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Tag not found with id: " + id));
 
         if (request.value() != null) Tag.setValue(request.value());
 
         return tagRepository.save(Tag);
-    }
-
-    public Page<Tag> findAllCategories(Pageable pageable) {
-        return tagRepository.findAll(pageable);
-    }
-    
-    public Tag findTagByTitle(String title) {
-        return tagRepository.findByValue(title).orElseThrow(() -> new ResourceNotFoundException("Tag not found with title: " + title));
     }
 
     @Transactional
@@ -62,5 +52,20 @@ public class TagService {
         }
 
         tagRepository.delete(tag);
+    }
+
+    @Transactional(readOnly = true)
+    public Tag findById(UUID id) {
+        return tagRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Tag not found with id: " + id));
+    }
+
+    @Transactional(readOnly = true)
+    public Page<Tag> findAllCategories(Pageable pageable) {
+        return tagRepository.findAll(pageable);
+    }
+
+    @Transactional(readOnly = true)
+    public Tag findTagByTitle(String title) {
+        return tagRepository.findByValue(title).orElseThrow(() -> new ResourceNotFoundException("Tag not found with title: " + title));
     }
 }

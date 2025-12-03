@@ -21,6 +21,7 @@ import java.util.UUID;
 public class CategoryService {
     private final CategoryRepository categoryRepository;
 
+    @Transactional
     public Category createCategory(CategoryRequest request) {
         if (categoryRepository.findByValue(request.value()).isPresent()) {
             throw new ConflictException("Category already exists");
@@ -32,6 +33,7 @@ public class CategoryService {
         return categoryRepository.save(category);
     }
 
+    @Transactional
     public Category updateCategory(CategoryRequest request, UUID id) {
         Category Category = categoryRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Category not found with id: " + id));
 
@@ -51,14 +53,17 @@ public class CategoryService {
         categoryRepository.delete(category);
     }
 
+    @Transactional(readOnly = true)
     public Page<Category> findAllCategories(Pageable pageable) {
         return categoryRepository.findAll(pageable);
     }
 
+    @Transactional(readOnly = true)
     public Category findCategoryById(UUID id) {
         return categoryRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Category not found with id: " + id));
     }
 
+    @Transactional(readOnly = true)
     public Category findCategoryByTitle(String title) {
         return categoryRepository.findByValue(title).orElseThrow(() -> new ResourceNotFoundException("Category not found with title: " + title));
     }
