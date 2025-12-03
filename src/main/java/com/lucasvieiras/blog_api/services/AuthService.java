@@ -44,7 +44,7 @@ public class AuthService {
 
         userRepository.save(user);
 
-        return login(new LoginRequest(user.getUsername(), user.getHashedPassword()));
+        return login(new LoginRequest(user.getUsername(), request.password()));
     }
 
     public AuthResponse login(LoginRequest loginRequest) {
