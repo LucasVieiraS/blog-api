@@ -3,6 +3,7 @@ package com.lucasvieiras.blog_api.services;
 import com.lucasvieiras.blog_api.dto.requests.article.ArticleRequest;
 import com.lucasvieiras.blog_api.dto.requests.article.CreateArticleRequest;
 import com.lucasvieiras.blog_api.entities.Article;
+import com.lucasvieiras.blog_api.entities.User;
 import com.lucasvieiras.blog_api.exceptions.ConflictException;
 import com.lucasvieiras.blog_api.exceptions.ResourceNotFoundException;
 import com.lucasvieiras.blog_api.repositories.ArticleRepository;
@@ -21,6 +22,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class ArticleService {
     private final ArticleRepository articleRepository;
+    private final UserService userService;
 
     @Transactional
     public Article createArticle(CreateArticleRequest request) {
@@ -28,12 +30,18 @@ public class ArticleService {
             throw new ConflictException("Article already exists");
         }
 
+        User author = userService.findUserById(request.authorId()).orElseThrow(
+                () -> new ResourceNotFoundException("Author not found")
+        );
+
         Article article = Article.builder()
                 .title(request.title())
                 .subtitle(request.subtitle())
                 .tags(request.tags())
                 .categories(request.categories())
+                .author(author)
                 .build();
+
         return articleRepository.save(article);
     }
 

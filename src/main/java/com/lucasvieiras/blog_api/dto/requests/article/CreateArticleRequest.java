@@ -8,6 +8,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 import java.util.Set;
+import java.util.UUID;
 
 public record CreateArticleRequest(
         @NotBlank(message = "Title is required")
@@ -26,7 +27,7 @@ public record CreateArticleRequest(
         String contentMarkdown,
 
         @NotBlank(message = "Author id is required.")
-        String authorId
+        UUID authorId
 ) {
 
 
