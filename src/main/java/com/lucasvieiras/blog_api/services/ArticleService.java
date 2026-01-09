@@ -37,6 +37,7 @@ public class ArticleService {
                 .subtitle(request.subtitle())
                 .tags(request.tags())
                 .categories(request.categories())
+                .contentMarkdown(request.contentMarkdown())
                 .author(author)
                 .build();
 
