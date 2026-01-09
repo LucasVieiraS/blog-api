@@ -50,6 +50,12 @@ To create an **admin** user for testing (so you can call POST/PATCH/DELETE endpo
 - `APP_ADMIN_EMAIL`
 - `APP_ADMIN_PASSWORD`
 
+If you don't set any `APP_ADMIN_*` env vars, the API will seed a default admin user on startup:
+
+- username: `admin`
+- email: `admin@example.com`
+- password: `admin`
+
 Unit tests:
 
 ```bash

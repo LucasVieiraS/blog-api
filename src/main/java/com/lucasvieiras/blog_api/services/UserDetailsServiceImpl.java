@@ -1,9 +1,10 @@
 package com.lucasvieiras.blog_api.services;
 
 import com.lucasvieiras.blog_api.entities.User;
-import com.lucasvieiras.blog_api.exceptions.ResourceNotFoundException;
 import com.lucasvieiras.blog_api.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -44,5 +45,10 @@ public class UserDetailsServiceImpl implements UserDetailsService, UserService {
     @Override
     public boolean existsById(UUID id) {
         return userRepository.existsById(id);
+    }
+
+    @Override
+    public Page<User> findAllUsers(Pageable pageable) {
+        return userRepository.findAll(pageable);
     }
 }
