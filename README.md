@@ -56,6 +56,13 @@ If you don't set any `APP_ADMIN_*` env vars, the API will seed a default admin u
 - email: `admin@example.com`
 - password: `admin`
 
+### OpenAPI / Swagger UI
+
+This project uses Springdoc.
+
+- Swagger UI: `http://localhost:8080/api/v1/swagger-ui/index.html`
+- OpenAPI JSON: `http://localhost:8080/api/v1/v3/api-docs`
+
 Unit tests:
 
 ```bash
