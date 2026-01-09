@@ -1,0 +1,13 @@
+meta {
+  name: Filter Articles by Tags
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/api/v1/articles/filter/tags?values=java&values=spring&match=any
+  body: none
+  auth: none
+}
+
+

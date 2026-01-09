@@ -1,8 +1,8 @@
 # Blog API
 
-[![Java](https://img.shields.io/badge/Java-17-blue.svg?style=flat&logo=java)]()
-[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5.5-brightgreen.svg?style=flat&logo=springboot)]()
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat)]()
+[![Java](https://img.shields.io/badge/Java-17-blue.svg?style=flat&logo=java)](https://adoptium.net/)
+[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5.5-brightgreen.svg?style=flat&logo=springboot)](https://spring.io/projects/spring-boot)
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat)](LICENSE)
 
 REST API for a blog built with Spring Boot (layered controller/service/repository), PostgreSQL + Flyway migrations, and JWT-based authentication.
 
@@ -32,6 +32,23 @@ chmod +x mvnw
 ```
 
 ## Test
+
+### Bruno (API client)
+
+There is a Bruno collection checked into the repo at `docs/bruno/`.
+
+- Open Bruno
+- Import/open the collection folder: `docs/bruno/`
+- Set variables used by requests:
+  - `baseUrl` (example: `http://localhost:8080`)
+  - `token` (from `POST /api/v1/auth/login`, required for admin endpoints)
+  - `authorId` (required to create articles; see `docs/bruno/README.md`)
+
+To create an **admin** user for testing (so you can call POST/PATCH/DELETE endpoints), set these env vars before starting the API:
+
+- `APP_ADMIN_USERNAME`
+- `APP_ADMIN_EMAIL`
+- `APP_ADMIN_PASSWORD`
 
 Unit tests:
 

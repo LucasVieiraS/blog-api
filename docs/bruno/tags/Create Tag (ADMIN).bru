@@ -1,0 +1,24 @@
+meta {
+  name: Create Tag (ADMIN)
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/api/v1/tags
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  Authorization: Bearer {{token}}
+}
+
+body:json {
+  {
+    "value": "java"
+  }
+}
+
+

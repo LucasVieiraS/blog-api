@@ -1,0 +1,38 @@
+meta {
+  name: Create Article (ADMIN)
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}/api/v1/articles
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  Authorization: Bearer {{token}}
+}
+
+docs {
+  Note: this endpoint currently requires an explicit authorId (UUID). Set {{authorId}}.
+}
+
+body:json {
+  {
+    "title": "Hello from Bruno",
+    "subtitle": "A small smoke test",
+    "tags": [
+      { "value": "java" },
+      { "value": "spring" }
+    ],
+    "categories": [
+      { "value": "backend" }
+    ],
+    "contentMarkdown": "# Hello\n\nCreated via Bruno.",
+    "authorId": "{{authorId}}"
+  }
+}
+
+

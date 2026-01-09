@@ -1,0 +1,24 @@
+meta {
+  name: Create Category (ADMIN)
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/api/v1/categories
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  Authorization: Bearer {{token}}
+}
+
+body:json {
+  {
+    "value": "backend"
+  }
+}
+
+
